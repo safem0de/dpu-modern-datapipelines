@@ -2,6 +2,11 @@ import json
 import requests
 import os
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load .env file from the correct directory
+env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '2025_01_18', '.env')
+load_dotenv(dotenv_path=env_path)
 
 def upload_to_jsonbin(file_name="dogs.json"):
     """Upload data from a file to JSONBin."""
@@ -13,8 +18,8 @@ def upload_to_jsonbin(file_name="dogs.json"):
     
     headers = {
         "Content-Type": "application/json",
-        "X-Master-Key": "$2a$10$19IgWXyaT45oSl8valnru.7Ylhcb.ouYmnR/PMUkuKFW2qzXdUPiq",
-        "X-Collection-Id": "678b62d5ad19ca34f8efbcd1",
+        "X-Master-Key": os.getenv("JSONBIN_API_KEY"),
+        "X-Collection-Id": os.getenv("JSONBIN_COLLECTION_ID"),
         "X-Bin-Name": custom_name,
     }
     

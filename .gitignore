@@ -1,0 +1,9 @@
+.env
+
+/config
+/dags
+/logs
+/plugins
+
+/mnt
+/weather
