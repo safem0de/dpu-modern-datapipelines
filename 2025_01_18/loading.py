@@ -5,8 +5,11 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 # Load .env file from the correct directory
-env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '2025_01_18', '.env')
+env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 load_dotenv(dotenv_path=env_path)
+
+# print("JSONBIN_API_KEY:", os.getenv("JSONBIN_API_KEY"))
+# print("JSONBIN_COLLECTION_ID:", os.getenv("JSONBIN_COLLECTION_ID"))
 
 def upload_to_jsonbin(file_name="dogs.json"):
     """Upload data from a file to JSONBin."""
