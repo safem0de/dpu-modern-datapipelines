@@ -38,3 +38,8 @@ mkdir -p mnt/dags mnt/tests mnt/logs mnt/plugins weather
 ```bash
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 ```
+user/pass default
+```bash
+user : airflow
+pass : airflow
+```
