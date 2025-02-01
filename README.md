@@ -9,6 +9,8 @@ python 2025_01_18/app.py
 create envi for air-flow
 ```bash
 mkdir -p mnt/dags mnt/tests mnt/logs mnt/plugins weather
+or
+mkdir -p dags logs plugins config
 ```
 
 ```bash
