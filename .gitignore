@@ -7,3 +7,9 @@
 
 /mnt
 /weather
+
+*/bin
+*/__pycache__/
+*/lib
+*/lib64
+*/include
