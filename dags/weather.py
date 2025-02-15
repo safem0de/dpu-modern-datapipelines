@@ -81,6 +81,13 @@ def _validate_data():
 
     assert data.get("main") is not None
 
+def _validate_temperature_range():
+    with open(DAG_FILE_NAME, "r") as f:
+        data = json.load(f)
+
+    assert data.get("main").get("temp") >= 30
+    assert data.get("main").get("temp") <= 45
+
 
 default_args = {
     "email": ["67130503@dpu.ac.th"],
@@ -116,6 +123,11 @@ with DAG(
         python_callable=_validate_data,
     )
 
+    validate_temperature_range = PythonOperator(
+        task_id="validate_temperature_range",
+        python_callable=_validate_temperature_range,
+    )
+
     send_email = EmailOperator(
         task_id="send_email",
         to=["kan@odds.team"],
@@ -126,5 +138,5 @@ with DAG(
     end = EmptyOperator(task_id="end")
 
 
-    start >> get_weather_data >> validate_data >> load_data_to_postgres >> send_email >> end
+    start >> get_weather_data >> [validate_data, validate_temperature_range] >> load_data_to_postgres >> send_email >> end
     start >> create_weather_table >> load_data_to_postgres >> send_email >>end
