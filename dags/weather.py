@@ -48,9 +48,11 @@ def _create_weather_table():
     sql = """
         CREATE TABLE IF NOT EXISTS weathers (
             dt BIGINT NOT NULL,
-            temp FLOAT NOT NULL
+            temp FLOAT NOT NULL,
+            feels_like FLOAT NULL
         )
     """
+
     cursor.execute(sql)
     connection.commit()
 
@@ -66,10 +68,12 @@ def _load_data_to_postgres():
     with open(DAG_FILE_NAME, "r") as f:
         data = json.load(f)
 
+    feels_like = data["main"]["feels_like"]
     temp = data["main"]["temp"]
     dt = data["dt"]
+
     sql = f"""
-        INSERT INTO weathers (dt, temp) VALUES ({dt}, {temp})
+        INSERT INTO weathers (dt, temp, feels_like) VALUES ({dt}, {temp}, {feels_like})
     """
     cursor.execute(sql)
     connection.commit()
