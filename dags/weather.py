@@ -17,9 +17,9 @@ CONN_STR = "weather_postgres_conn"
 def _get_weather_data():
     # assert 1 == 2
 
-    API_KEY = "7958cef1ef4a1596e89c6e60a3cdfcc3"
+    # API_KEY = "7958cef1*********60a3cdfcc3"
     # API_KEY = os.environ.get("WEATHER_API_KEY")
-    # API_KEY = Variable.get("weather_api_key")
+    API_KEY = Variable.get("weather_api_key")
 
     payload = {
         "q": "bangkok",
